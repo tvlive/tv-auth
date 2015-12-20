@@ -1,0 +1,9 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /authorize/:user/:token        controllers.AuthorizationController.findAuthorization(user: String, token: String)
+
+POST        /authorize                     controllers.AuthorizationController.saveAuthorization
+
