@@ -13,22 +13,7 @@ case class AuthorizationIn(username: String, dateExpired: DateTime)
 
 case class AuthorizationOut(username: String, dateExpired: DateTime, token: String)
 
-object AuthorizationInOut {
-
-  val pattern = "dd/MM/yyyy hh:mm:ss"
-
-  implicit val dateFormat = Format[DateTime](
-    Reads.jodaDateReads(pattern),
-    Writes.jodaDateWrites(pattern))
-
-  implicit val authInFmt = Json.format[AuthorizationIn]
-  implicit val authOutFmt = Json.format[AuthorizationOut]
-}
-
-
 trait AuthorizationController extends Controller {
-
-  import AuthorizationInOut._
   val repo: AuthorizationRepository
 
   def findAuthorization(username: String, token: String) = Action.async {
