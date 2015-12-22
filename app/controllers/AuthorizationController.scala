@@ -19,7 +19,7 @@ trait AuthorizationController extends Controller {
   def findAuthorization(username: String, token: String) = Action.async {
     repo.findAuthorization(username, token).map {
       case Some(auth) => Ok
-      case None => Unauthorized
+      case None => NotFound
     }
   }
 
